@@ -1,5 +1,5 @@
-import React, { useState, createContext } from "react";
-import uuid from "uuid/v1";
+import React, { useState, createContext, useReducer } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export const TodoContext = createContext();
 
@@ -18,7 +18,7 @@ const TodoContextProvider = (props) => {
   ]);
 
   const addTodos = (title, body) => {
-    setTodos(...todos, { title, body, id: uuid() });
+    setTodos([...todos, { title, body, id: uuidv4() }]);
   };
 
   const deleteTodos = (id) => {
