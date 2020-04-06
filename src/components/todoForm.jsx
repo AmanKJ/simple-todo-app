@@ -2,13 +2,19 @@ import React, { useContext, useState } from "react";
 import { TodoContext } from "../contexts/todoContext";
 
 const TodoForm = () => {
-  const { addTodos } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTodos(title, body);
+    dispatch({
+      type: "ADD_TODO",
+      todo: {
+        title,
+        body,
+      },
+    });
     setTitle("");
     setBody("");
   };
